@@ -2016,51 +2016,45 @@ function lowStockWarningEmail($virtuemart_product_id) {
 
 }
 
-	public function getUncategorizedChildren ($withParent) {
-		if (empty($this->_uncategorizedChildren)) {
-	$q = 'SELECT `product_parent_id` FROM `#__virtuemart_products` WHERE `virtuemart_product_id` = "' . $this->_id . '" ';
-			$this->_db->setQuery ($q);
-			$product_parent_id = $this->_db->loadResult();
-			//Todo add check for shoppergroup depended product display
-			$q = 'SELECT * FROM `#__virtuemart_products` as p
-				LEFT JOIN `#__virtuemart_products_' . VMLANG . '` as pl
-				USING (`virtuemart_product_id`)
-				LEFT JOIN `#__virtuemart_product_categories` as pc
-				USING (`virtuemart_product_id`) ';
+	   public function getUncategorizedChildren($selected){
 
-//	 		$q .= ' WHERE (`product_parent_id` = "'.$this->_id.'" AND (pc.`virtuemart_category_id`) IS NULL  ) OR (`virtuemart_product_id` = "'.$this->_id.'" ) ';
-			if ($withParent && $product_parent_id != 0) {
-				$q .= ' WHERE (`product_parent_id` = "' . $this->_id . '"  OR `product_parent_id` = "' . $product_parent_id . '" OR `virtuemart_product_id` = "' . $this->_id . '" OR `virtuemart_product_id` = "' . $product_parent_id . '") ';
-			} elseif ($withParent) {
-				$q .= ' WHERE (`product_parent_id` = "' . $this->_id . '"  OR `virtuemart_product_id` = "' . $this->_id . '") ';
-			}
-			else {
-				$q .= ' WHERE `product_parent_id` = "' . $this->_id . '" ';
-			}
+		$q = 'SELECT * FROM `#__virtuemart_products` as p
+			LEFT JOIN `#__virtuemart_products_'.VMLANG.'` as pl
+			USING (`virtuemart_product_id`)
+            LEFT JOIN `#__virtuemart_product_medias`
+			USING (`virtuemart_product_id`)
+            LEFT JOIN `#__virtuemart_medias`
+            USING (`virtuemart_media_id`)
+            LEFT JOIN `#__virtuemart_product_prices`
+			USING (`virtuemart_product_id`)';
 
-			$app = JFactory::getApplication ();
-			if ($app->isSite () && !VmConfig::get ('use_as_catalog', 0) && VmConfig::get ('stockhandle', 'none') == 'disableit') {
-				$q .= ' AND p.`product_in_stock`>"0" ';
-			}
+		$q .= ' WHERE `product_parent_id` = "'.$this->_id.'"  OR `virtuemart_product_id` = "'.$this->_id.'" ';
 
-			if ($app->isSite ()) {
 
-				$q .= ' AND p.`published`="1"';
-			}
 
-			$q .= ' GROUP BY `virtuemart_product_id` ORDER BY ordering DESC';
-			$this->_db->setQuery ($q);
-			$this->_uncategorizedChildren = $this->_db->loadAssocList ();
-			$err = $this->_db->getErrorMsg ();
-			if (!empty($err)) {
-				vmError ('getUncategorizedChildren sql error ' . $err, 'getUncategorizedChildren sql error');
-				vmdebug ('getUncategorizedChildren ' . $err);
-				return FALSE;
-			}
-// 			vmdebug('getUncategorizedChildren '.$this->_db->getQuery());
-		}
-		return $this->_uncategorizedChildren;
+	$app = JFactory::getApplication();
+	if($app->isSite() && !VmConfig::get('use_as_catalog',0) && VmConfig::get('stockhandle','none')=='disableit' ){
+			//$q .= ' AND p.`product_in_stock`>"0" ';
 	}
+
+	if($app->isSite()){
+		$q .= ' AND p.`published`="1"';
+	}
+
+	$q .= 'GROUP BY `virtuemart_product_id` ORDER BY ordering DESC';
+	$this->_db->setQuery($q);
+	$res = $this->_db->loadAssocList() ;
+	$err = $this->_db->getErrorMsg();
+	if(!empty($err)){
+		vmError('getUncategorizedChildren sql error '.$err,'getUncategorizedChildren sql error');
+		vmdebug('getUncategorizedChildren '.$err);
+		return false;
+	} else {
+ 		//vmdebug('getUncategorizedChildren '.$this->_db->getQuery());
+		return $res;
+	}
+
+}
 
 	/**
 	 * Check if the product has any children
