@@ -1033,39 +1033,56 @@ class VirtueMartModelCustomfields extends VmModel {
 				case 'A':
 
 					$options = array();
-
-					$session = JFactory::getSession ();
-					$virtuemart_category_id = $session->get ('vmlastvisitedcategoryid', 0, 'vm');
-
-					$productModel = VmModel::getModel ('product');
-
-					//parseCustomParams
-					VirtueMartModelCustomfields::bindParameterableByFieldType($customfield);
-					//Todo preselection as dropdown of children
-					//Note by Max Milbers: This is not necessary, in this case it is better to unpublish the parent and to give the child which should be preselected a category
-					//Or it is withParent, in that case there exists the case, that a parent should be used as a kind of mini category and not be orderable.
-					//There exists already other customs and in special plugins which wanna disable or change the add to cart button.
-					//I suggest that we manipulate the button with a message "choose a variant first"
-					//if(!isset($customfield->pre_selected)) $customfield->pre_selected = 0;
-					$selected = JRequest::getInt ('virtuemart_product_id',0);
-
-					$html = '';
-					$uncatChildren = $productModel->getUncategorizedChildren ($customfield->withParent);
-
-					foreach ($uncatChildren as $k => $child) {
-						$options[] = array('value' => JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_category_id=' . $virtuemart_category_id . '&virtuemart_product_id=' . $child['virtuemart_product_id']), 'text' => $child['product_name']);
-					}
-
-					$html .= JHTML::_ ('select.genericlist', $options, 'field[' . $row . '][custom_value]', 'onchange="window.top.location.href=this.options[this.selectedIndex].value" size="1" class="inputbox"', "value", "text",
-						JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_category_id=' . $virtuemart_category_id . '&virtuemart_product_id=' . $selected));
-					//vmdebug('$customfield',$customfield);
-
-					if($customfield->parentOrderable==0 and $product->product_parent_id==0){
-						$product->orderable = FALSE;
-					}
-
-					return $html;
-					break;
+$session = JFactory::getSession();
+$virtuemart_category_id = 
+  $session->get('vmlastvisitedcategoryid', 0, 'vm');
+$productModel = VmModel::getModel('product');
+$selected = JRequest::getInt('virtuemart_product_id');
+$uncatChildren = $productModel->getUncategorizedChildren($selected);
+foreach($uncatChildren as $k =>$child ){
+$options[] = array( 'value' => JRoute::_
+('index.php?option=com_virtuemart&view=productdetails&virtuemart_category_id=
+'.$virtuemart_category_id.'&virtuemart_product_id='.$child['virtuemart_product_id']),
+'id'=>$child['virtuemart_product_id'],
+'text' =>$child['product_name'],'articul' =>$child['product_sku'],
+'tovarimage' =>$child['file_url_thumb'],
+'tovarmodimage' =>$child['file_url'], 'tovarprice' =>$child['product_price'] );}
+ 
+ $res=array();
+ $table='<div class="tabletov"><table width="100%">
+ <tr><th>Изображение</th>
+ <th>Название</th><th>Артикул</th>
+  <th>Цена</th> <th>Купить</th></tr>';
+ 
+foreach($options as $arr):
+if ( $arr['value'] === JRoute::_
+('index.php?option=com_virtuemart&view=productdetails
+&virtuemart_category_id='.$virtuemart_category_id.
+'&virtuemart_product_id='.$selected)) continue;
+$res[]= '<tr><td><a class="modal" href='.JRoute::_
+('index.php?option=com_virtuemart').$arr['tovarmodimage'].'>
+<img class="product-image" src='.JRoute::_
+('index.php?option=com_virtuemart').$arr['tovarimage'].'></a></td>
+<td><a href='.$arr['value'].'>'.$arr['text'].'</a></td><td>'.$arr['articul'].'</td>
+<td>'.$currency->priceDisplay((float)$arr['tovarprice']).'</td>
+<td><form method="post" class="product js-recalculate" action="index.php" >
+<span class="quantity-box">
+<input type="text" class="quantity-input js-recalculate" name="quantity[]" value="1" /></span>
+<span class="quantity-controls js-recalculate">
+<input type="button" class="quantity-controls quantity-plus" />
+<input type="button" class="quantity-controls quantity-minus" /></span>
+<span class="addtocart-button"><input type="submit" name="addtocart"  
+class="addtocart-button" value="Добавить в корзину" /></span>
+<input class="pname" type="hidden" value='.$arr['text'].'>
+<input type="hidden" value="com_virtuemart" name="option">
+<input type="hidden" value="cart" name="view">
+<noscript><input type="hidden" name="task" value="add" /></noscript>
+ <input type="hidden" value='.$arr['id'].' name="virtuemart_product_id[]">
+ <input type="hidden" value="0" name="virtuemart_category_id[]"></form></td></tr>';
+endforeach;
+$str = implode($res);
+return '<br>'.$table.''.$str.'</table></div>';
+break;
 
 				/* variants*/
 				case 'V':
