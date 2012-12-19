@@ -1051,35 +1051,37 @@ class VirtueMartModelCustomfields extends VmModel {
 					 
 					 $res=array();
 					 $table='<div class="tabletov"><table width="100%">
-					 <tr><th>Изображение</th>
-					 <th>Название</th><th>Артикул</th>
-					  <th>Цена</th> <th>Купить</th></tr>';
+					 <tr><th>Количество</th>
+					  <th>Цена</th> <th class="white"></th></tr>';
 					 //var_dump($options);
 					foreach($options as $arr):
 						if ( $arr['value'] === JRoute::_
 						('index.php?option=com_virtuemart&view=productdetails
 						&virtuemart_category_id='.$virtuemart_category_id.
 						'&virtuemart_product_id='.$selected)) continue;
-						$res[]= '<tr><td><a class="modal" href='.JRoute::_
-						('index.php?option=com_virtuemart').$arr['tovarmodimage'].'>
-						<img class="product-image" src='.JRoute::_
-						('index.php?option=com_virtuemart').$arr['tovarimage'].'></a></td>
-						<td><a href='.$arr['value'].'>'.$arr['text'].'</a></td><td>'.$arr['articul'].'</td>
-						<td>'.$currency->priceDisplay((float)$arr['tovarprice']).'</td>
-						<td><form method="post" class="product js-recalculate" action="index.php" >
-						<span class="quantity-box">
-						<input type="text" class="quantity-input js-recalculate" name="quantity[]" value="1" /></span>
-						<span class="quantity-controls js-recalculate">
-						<input type="button" class="quantity-controls quantity-plus" />
-						<input type="button" class="quantity-controls quantity-minus" /></span>
-						<span class="addtocart-button"><input type="submit" name="addtocart"  
-						class="addtocart-button" value="Добавить в корзину" /></span>
-						<input class="pname" type="hidden" value='.$arr['text'].'>
-						<input type="hidden" value="com_virtuemart" name="option">
-						<input type="hidden" value="cart" name="view">
-						<noscript><input type="hidden" name="task" value="add" /></noscript>
-						 <input type="hidden" value='.$arr['id'].' name="virtuemart_product_id[]">
-						 <input type="hidden" value="0" name="virtuemart_category_id[]"></form></td></tr>';
+						$res[]= '<tr>
+						<td>'.$arr['text'].'</td>
+						<td class="tabletov__td_red">'.$currency->priceDisplay((float)$arr['tovarprice']).'</td>
+						<td>
+							<form method="post" class="product js-recalculate" action="index.php" >
+							<div class="addtocart-bar">
+									<input type="hidden" class="quantity-input js-recalculate" name="quantity[]" value="1" />
+								<!--<span class="quantity-controls js-recalculate">
+									<input type="button" class="quantity-controls quantity-plus" />
+									<input type="button" class="quantity-controls quantity-minus" /></span>-->
+								<span class="addtocart-button">
+									<input type="submit" name="addtocart"  class="addtocart-button" value="Добавить в корзину" />
+								</span>
+								<div class="clear"></div>
+							</div>
+							<input class="pname" type="hidden" value='.$arr['text'].'>
+							<input type="hidden" value="com_virtuemart" name="option">
+							<input type="hidden" value="cart" name="view">
+							<noscript><input type="hidden" name="task" value="add" /></noscript>
+							<input type="hidden" value='.$arr['id'].' name="virtuemart_product_id[]">
+							<input type="hidden" value="0" name="virtuemart_category_id[]"></form>
+						</td>
+						</tr>';
 					endforeach;
 					$str = implode($res);
 					return '<br>'.$table.''.$str.'</table></div>';

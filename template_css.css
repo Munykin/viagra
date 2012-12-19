@@ -949,8 +949,22 @@ img.img_right {
 	margin: 0 20px 15px 0;
 }
 
-.tabletov {text-align: center;}
-.tabletov th { padding: 20px;
- text-align: center; background: #3B5998;}
+.tabletov {margin-top: 30px;width:500px;text-align: left;}
+.tabletov th { 
+	padding: 20px;
+	text-align: center; 
+	background: #E5EAF0;
+}
 .tabletov tr {background: #fff;}
-.tabletov tr:nth-child(odd) {background: #FFE4B5;}
+.tabletov tr:nth-child(odd) {background: #E5EAF0;}
+.tabletov .white{background-color:#FFFFFF;width: 90px;}
+.tabletov__td_red{
+color:red;
+}
+
+.addtocart-bar_arrows-activate{
+	background: #E40202 url(/templates/hot_drug_store/images/add-to-cart_box.png) no-repeat bottom right !important;
+}
+.addtocart-bar_middle-size{
+	width: 168px !important;
+}

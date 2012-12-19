@@ -1,0 +1,425 @@
+/*------------------------------------------------------------------------
+# "Hot Drug Store" Joomla template - August, 2012
+# Copyright (C) 2012 Hot Joomla Templates. All Rights Reserved.
+# License: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+# Author: HotJoomlaTemplates.com
+# Website: http://www.hotjoomlatemplates.com
+-------------------------------------------------------------------------*/
+
+.shopping_cart {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 11px;
+	text-align: right;
+}
+
+.featured-view .product, .browse-view .product {
+	background: url(../images/product_box_shadow.png) bottom no-repeat;
+}
+
+.browse-view .row .product .spacer h2, .featured-view h3 {
+	padding: 0 !important;
+	margin: 10px 0 0 0 !important;
+}
+
+h2.category-view {
+	border-bottom:none;
+}
+
+h2.category-view a, .featured-view h3 a {
+	font-size: 12px !important;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	line-height: normal;
+	color:#000 !important;
+	text-transform: none;
+}
+
+.product h2 a {
+	font-size:12px;
+}
+
+.browse-view .row .product .spacer, .featured-view .row .product .spacer {
+	background:#f6f6f6;
+	margin:20px;
+	padding:10px 0 0 0;
+	border:1px solid #e1e1e1;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+
+p.product_s_desc {
+	text-align:center;
+	margin:0 5px;
+	line-height: 14px;
+	min-height: 56px;
+	font-size: 11px;
+}
+
+.horizontal-separator {
+	background:none;
+	margin:0;
+}
+
+.general-bg, input.custom-attribute, input.vm-default, a.details, div.details, button.default {
+	border-color:#CD2343;
+	color:#CD2343 !important;
+}
+
+input.quantity-input {
+	height:28px;
+	padding:0;
+}
+
+a.ask-a-question {
+	border:1px solid #ddd;
+	font-weight: normal;
+	color:#999 !important;
+}
+
+a.product-details, a.product-details:hover {
+	font-size:16px;
+	line-height: 22px;
+	font-weight: 800;
+	font-style: italic;
+	text-transform: uppercase;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+	display:block;
+	height:22px;
+	padding: 0;
+	margin: 0;
+	text-indent: 20px;
+	text-align: left;
+}
+
+.browse-view .row .product .spacer span, .featured-view .product span {
+	font-size: 16px !important;
+	font-weight: bold;
+	color:#db0000;
+	background: url(../images/price_bg.png) no-repeat;
+	display: block;
+	width:120px;
+	height:24px;
+	line-height: 28px;
+	text-align: left;
+	text-indent: 22px;
+	float:left;
+}
+
+.orderlistcontainer div.activeOrder a, .activeOrder, .orderlist a {
+	color:#333 !important;
+}
+
+.orderlist div {
+	min-width:150px;
+}
+
+.orderby-displaynumber {
+	border:none;
+}
+
+span.title, .customer-reviews h4 {
+	border-bottom:none;
+}
+
+.customer-reviews h4 {
+	font-size: 13px;
+	color:#828282;
+}
+
+.productdetails-view {
+	float: left;
+	width: 485px;
+	padding-left:15px;
+	border-left:2px dotted #e9e9e9;
+}
+
+.addtocart-area {
+	margin: 21px 0 0 0;
+	width: 140px;
+	/*float:left;*/
+}
+
+a.ask-a-question  {
+	padding:6px 10px 6px;	
+}
+
+.product-description {
+	clear:both;
+	padding-top:30px;
+}
+
+.images_and_addtocart {
+	float:left;
+	width:200px;
+}
+
+.popup a {
+	color:#333 !important;	
+}
+
+.product-fields-title {
+	display:block;
+}
+
+.productdetails-view .product-price {
+	text-align:left;
+}
+
+.product-price {
+	margin:0;
+}
+
+.productdetails-view h1 {
+	font-size: 25px;
+	font-weight: normal;
+	color:#b45858;
+	text-transform: none;
+	border-bottom: none;
+}
+
+.productdetails-view .addtocart-bar {
+	margin:0;
+	padding:0;
+	background: #ce0202; /* Old browsers */
+	background: -moz-linear-gradient(top, #ce0202 0%, #ff0202 50%, #ce0202 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ce0202), color-stop(50%,#ff0202), color-stop(100%,#ce0202)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ce0202 0%,#ff0202 50%,#ce0202 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ce0202 0%,#ff0202 50%,#ce0202 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ce0202 0%,#ff0202 50%,#ce0202 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ce0202 0%,#ff0202 50%,#ce0202 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ce0202', endColorstr='#ce0202',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.25);
+	-moz-box-shadow:    0px 0px 10px rgba(255, 0, 0, 0.25);
+	box-shadow:         0px 0px 10px rgba(255, 0, 0, 0.25);
+}
+
+.productdetails-view .addtocart-bar:hover {
+	-webkit-box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.75);
+	-moz-box-shadow:    0px 0px 10px rgba(255, 0, 0, 0.75);
+	box-shadow:         0px 0px 10px rgba(255, 0, 0, 0.75);
+}
+
+.productdetails-view .addtocart-bar:active {
+	background: #ff0202; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff0202 0%, #ce0202 48%, #ff0202 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff0202), color-stop(48%,#ce0202), color-stop(100%,#ff0202)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff0202 0%,#ce0202 48%,#ff0202 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff0202 0%,#ce0202 48%,#ff0202 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff0202 0%,#ce0202 48%,#ff0202 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ff0202 0%,#ce0202 48%,#ff0202 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0202', endColorstr='#ff0202',GradientType=0 ); /* IE6-9 */
+}
+
+.productdetails-view .spacer-buy-area {
+	padding-left:0;
+}
+
+.marginminus50 {
+	margin-top:-50px;
+}
+
+span.addtocart-button input.addtocart-button, span.addtocart-button input.notify-button,
+span.addtocart-button input.addtocart-button:hover, span.addtocart-button input.notify-button:hover {
+	width:125px;
+	padding:0;
+	height:28px;
+	background:none;
+	border:none;
+	color:#fff;
+	font-size:10px;
+	font-family: 'Lucida Grande';
+	font-weight:normal;
+	text-transform:uppercase;
+	letter-spacing:0px;
+	text-indent:5px;
+}
+
+.addtocart-bar {
+	width:130px;
+	background:url(../images/add-to-cart_box.png) no-repeat;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+
+span.quantity-box {
+	float: right;
+	width: 27px;
+	padding:0;
+	height:28px;
+	line-height:28px;
+	background:#fff;
+	color:#333;
+	-moz-border-radius:0 3px 3px 0;
+	-webkit-border-radius:0 3px 3px 0;
+	border-radius:0 3px 3px 0;
+}
+
+input.quantity-input, span.quantity-controls input.quantity-plus, span.quantity-controls input.quantity-minus,
+span.quantity-box input.quantity-input:hover {
+	background:none;
+	border:none;
+}
+
+span.quantity-controls {
+	float: right;
+	height:28px;
+	margin:0;
+	padding:0;
+}
+
+span.quantity-controls input.quantity-controls {
+	height:13px;
+}
+
+span.addtocart-button {
+	float:left;
+	margin:0;
+	width:80px;
+	height:28px;
+}
+
+.show_cart {
+	height:18px;
+	text-align:center;
+	margin-top:10px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+a.checkout_link:link, a.checkout_link:visited,
+a.highlight, a.highlight:visited {
+	background-image:none;
+	border:none;
+}
+
+.show_cart a {
+	float:none !important;
+	color:#fff !important;
+	line-height:18px;
+	background:#000;
+	display:block;
+	border:1px solid #444;
+}
+
+.vmCartModule .show_cart a {
+	float:none !important;
+	color:#333 !important;
+	line-height:18px;
+	background:#fff;
+	display:block;
+	border:1px solid #444;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}
+
+.vmicon {
+	background:url(../images/update_quantity_cart.png) no-repeat;	
+}
+
+.vm2-remove_from_cart {
+	background:url(../images/remove_from_cart.png) no-repeat;
+}
+
+.customer-comment {
+	border-top:1px solid #ddd;
+}
+
+.checkout-button-top {
+	border:none;
+}
+
+table.cart-summary tr th {
+	border-bottom:1px solid #ddd;
+	margin-bottom: 15px;
+	padding:6px 0;
+}
+
+.cart-view fieldset {
+	margin:0;
+	padding:0;
+}
+
+table.cart-summary a:link, table.cart-summary a:visited {
+	color:#317F95;
+}
+
+.vm-button-correct, .vm-button-correct:link, .vm-button-correct:visited {
+	background:#dd070a;
+	border:1px solid #dd070a;
+}
+
+a.checkout_link:link, a.checkout_link:visited {
+	background:#444;
+	border:1px solid #000;
+	color:#fff;
+}
+
+.joomlaCoreField {
+	background:#222;
+}
+
+.manufacturer {
+	padding:0;
+	margin:0;
+}
+
+.product-description .title {
+	font-size: 13px;
+}
+
+.productdetails-view .product-price {
+	font-size:25px;
+}
+
+.write-reviews {
+	text-align:left;
+}
+
+input.highlight-button {
+	background-image:none;
+	background-color: #dd0303;
+	border:1px solid #dd0303;
+}
+
+.list-reviews .normal {
+	border:1px solid #ddd;
+}
+
+.list-reviews .normal blockquote::before, .list-reviews .highlight blockquote::before,
+.list-reviews .normal blockquote::after, .list-reviews .highlight blockquote::after {
+	font-size: inherit;
+}
+
+.manufacturer-description {
+	margin:30px 0;
+}
+
+/* IE7 fix */
+
+.orderlistcontainer {
+	float:left;	
+}
+
+/* pagination after RC3 */
+
+#bottom-pagination li {
+	padding:0 5px;
+}
+
+/* popup */
+
+#facebox .content {
+	padding:20px !important;
+}
+
+#facebox .content .continue, #facebox .content .floatright {
+	line-height:30px;
+	font-weight:bold;
+}
